@@ -1,11 +1,10 @@
 BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS guests;
-DROP TABLE IF EXISTS event;
+DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS invitation;
 DROP TABLE IF EXISTS users;
 
-DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS seq_user_id;
 
 CREATE SEQUENCE seq_user_id
@@ -28,31 +27,34 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 
 CREATE TABLE invitation (
   invitation_id serial NOT NULL,
-  host_id serial NOT NULL,
-  city varchar NOT NULL,
-  appointment timestamp NOT NULL,
-  decisionDate timestamp NOT NULL,
-  numberOfGuest int DEFAULT 0,
-  CONSTRAINT PK_invitation PRIMARY KEY (invitation_id),
-	CONSTRAINT FK_invitation_id FOREIGN KEY(host_id) REFERENCES users(user_id)
+  host_id int NOT NULL,
+  city varchar(100) NOT NULL,
+  restaurant varchar(100),
+  meeting_date timestamptz NOT NULL,
+  decision_date timestamptz NOT NULL,
+    CONSTRAINT PK_invitation PRIMARY KEY (invitation_id),
+	CONSTRAINT FK_invitation_host_id FOREIGN KEY(host_id) REFERENCES users(user_id)
 );
 
-CREATE TABLE event (
-  eventId int NOT NULL,
-  restaurant varchar NOT NULL,
-  thumbsUP int DEFAULT 0,
-  thumbsDown int DEFAULT 0,
-  decisionDate timestamp NOT NULL,
-  invitationId int NOT NULL,
-	CONSTRAINT PK_event PRIMARY KEY (eventId),
-	CONSTRAINT FK_eventId FOREIGN KEY(eventId) REFERENCES invitation(invitation_id)
+CREATE TABLE votes (
+  vote_id serial NOT NULL,
+  restaurant varchar(100),
+  thumbs_up int DEFAULT 0,
+  thumbs_down int DEFAULT 0,
+  invitation_id int NOT NULL,
+	CONSTRAINT PK_votes PRIMARY KEY (vote_id),
+	CONSTRAINT FK_votes_invitation_id FOREIGN KEY(invitation_id) REFERENCES invitation(invitation_id)
 );
 
 CREATE TABLE guests (
-  guestId int NOT NULL,
-  name varchar NOT NULL,
-  email varchar,
-  CONSTRAINT PK_guest PRIMARY KEY (guestId)
+  guest_id serial NOT NULL,
+  name varchar(30) NOT NULL,
+  email varchar(100),
+  vote_id int NOT NULL,
+  invitation_id int NOT NULL,
+  CONSTRAINT PK_guests PRIMARY KEY (guest_id),
+  CONSTRAINT FK_guests_vote_id FOREIGN KEY (vote_id) REFERENCES votes(vote_id),
+  CONSTRAINT FK_guests_invitation_id FOREIGN KEY (invitation_id) REFERENCES invitation (invitation_id)
 );
 
 COMMIT TRANSACTION;
