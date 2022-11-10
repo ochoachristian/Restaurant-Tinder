@@ -6,6 +6,7 @@ import Home from '../Home/Home'
 import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import Search from '../Search/Search'
 
 const mapStateToProps = state => {
     return {
@@ -45,6 +46,7 @@ class Main extends Component {
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
+                    <Route path='/search' component={() => <Search/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
                     <Redirect to='/login'/>
                 </Switch>

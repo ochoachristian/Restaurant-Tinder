@@ -1,0 +1,64 @@
+/* body {
+    background-color: rgb(66, 0, 0);
+ } */
+
+ .title {
+    display: flex;
+    justify-content: center;
+    color: cornsilk;
+    margin: 40px;
+    font-weight: bold;
+    font-style: italic;
+ }
+
+ .userinput {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+ }
+
+.invite-section {
+    display: flex;
+    justify-content: center;
+}
+ .h1 {
+    color:cornsilk;
+    width: 500px;
+    align-self: flex-start;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    margin: 100px;
+    width: 1000px;
+    padding-left: 800px;
+    padding-top: 200px;
+}
+
+.input {
+    align-self: center;
+    width: 300px;
+}
+
+
+.button {
+    color:lavender
+}
+
+.label {
+    color: rgb(241, 231, 231);
+}
+
+.cardlist {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 50px;
+    overflow-x: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}

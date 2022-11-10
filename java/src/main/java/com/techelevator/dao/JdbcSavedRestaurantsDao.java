@@ -43,10 +43,10 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
 
     @Override
     public boolean saveRestaurant(SavedRestaurants savedRestaurant) {
-        String sql = "INSERT INTO saved_restaurants (restaurant_id, image, name, address, phone_number) "
-                + "VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO saved_restaurants (restaurant_id, image, name, address, phone_number, user_id) "
+                + "VALUES (DEFAULT, ?, ?, ?, ?, ?);";
 
-        return jdbcTemplate.update(sql, savedRestaurant.getRestaurantId(),savedRestaurant.getImage(),savedRestaurant.getName(),savedRestaurant.getPhoneNumber()) == 1;
+        return jdbcTemplate.update(sql,savedRestaurant.getImage(),savedRestaurant.getName(),savedRestaurant.getAddress(), savedRestaurant.getPhoneNumber(), savedRestaurant.getUserId()) == 1;
     }
 
     @Override
