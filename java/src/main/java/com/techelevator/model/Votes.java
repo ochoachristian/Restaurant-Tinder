@@ -2,7 +2,7 @@ package com.techelevator.model;
 
 public class Votes {
     private int voteId;
-    private String restaurant;
+    private int restaurantId;
     private int thumbsUp;
     private int thumbsDown;
     private int invitationId;
@@ -10,9 +10,9 @@ public class Votes {
     public Votes() {
     }
 
-    public Votes(int voteId, String restaurant, int thumbsUp, int thumbsDown, int invitationId) {
+    public Votes(int voteId, int restaurantId, int thumbsUp, int thumbsDown, int invitationId) {
         this.voteId = voteId;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
         this.thumbsUp = thumbsUp;
         this.thumbsDown = thumbsDown;
         this.invitationId = invitationId;
@@ -26,12 +26,12 @@ public class Votes {
         this.voteId = voteId;
     }
 
-    public String getRestaurant() {
-        return restaurant;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurant(String restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurantId(int restaurant) {
+        this.restaurantId = restaurant;
     }
 
     public int getThumbsUp() {

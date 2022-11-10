@@ -6,18 +6,18 @@ public class Invitation {
     private int invitationId;
     private int hostId;
     private String city;
-    private String restaurant;
+    private int restaurantId;
     private Date meetingDate;
     private Date decisionDate;
 
     public Invitation() {
     }
 
-    public Invitation(int invitationId, int hostId, String city, String restaurant, Date meetingDate, Date decisionDate) {
+    public Invitation(int invitationId, int hostId, String city, int restaurantId, Date meetingDate, Date decisionDate) {
         this.invitationId = invitationId;
         this.hostId = hostId;
         this.city = city;
-        this.restaurant = restaurant;
+        this.restaurantId = restaurantId;
         this.meetingDate = meetingDate;
         this.decisionDate = decisionDate;
     }
@@ -46,12 +46,12 @@ public class Invitation {
         this.city = city;
     }
 
-    public String getRestaurant() {
-        return restaurant;
+    public int getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setRestaurant(String restaurant) {
-        this.restaurant = restaurant;
+    public void setRestaurantId(int restaurant) {
+        this.restaurantId = restaurantId;
     }
 
     public Date getMeetingDate() {

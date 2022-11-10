@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 //@PreAuthorize("isAuthenticated()")
 public class GuestsController {
     private GuestsDao guestsDao;

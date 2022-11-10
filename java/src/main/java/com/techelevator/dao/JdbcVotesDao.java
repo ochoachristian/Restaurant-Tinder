@@ -18,7 +18,7 @@ public class JdbcVotesDao implements VotesDao {
     public boolean createVote(Votes vote) {
         String sql = "INSERT INTO votes (vote_id, restaurant, thumbs_up, thumbs_down, invitation_id) "
                 + "VALUES (?, ?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, vote.getVoteId(),vote.getRestaurant(),vote.getThumbsUp(), vote.getThumbsDown(), vote.getInvitationId()) == 1;
+        return jdbcTemplate.update(sql, vote.getVoteId(),vote.getRestaurantId(),vote.getThumbsUp(), vote.getThumbsDown(), vote.getInvitationId()) == 1;
     }
 
     @Override
@@ -64,7 +64,7 @@ public class JdbcVotesDao implements VotesDao {
     private Votes mapRowToVotes(SqlRowSet rowSet) {
         Votes vote = new Votes();
         vote.setVoteId(rowSet.getInt("vote_id"));
-        vote.setRestaurant(rowSet.getString("restaurant"));
+        vote.setRestaurantId(rowSet.getInt("restaurant_id"));
         vote.setThumbsUp(rowSet.getInt("thumbs_up"));
         vote.setThumbsDown(rowSet.getInt("thumbs_down"));
         vote.setInvitationId(rowSet.getInt("invitation_id"));

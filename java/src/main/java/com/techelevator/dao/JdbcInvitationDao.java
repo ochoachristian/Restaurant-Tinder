@@ -49,13 +49,13 @@ public class JdbcInvitationDao implements InvitationDao{
         String sql = "INSERT INTO invitation (host_id, city, restaurant, meeting_date, decision_date) "
                 + "VALUES (?, ?, ?, ?, ?);";
 
-        return jdbcTemplate.update(sql,invite.getHostId(),invite.getCity(),invite.getRestaurant(),invite.getMeetingDate(),invite.getDecisionDate()) == 1;
+        return jdbcTemplate.update(sql,invite.getHostId(),invite.getCity(),invite.getRestaurantId(),invite.getMeetingDate(),invite.getDecisionDate(),invite.getHostId()) == 1;
     }
 
     @Override
     public boolean updateInvitation(Invitation invite) {
         String sql = "UPDATE invitation SET restaurant = ? WHERE invitation_id = ?;";
-        return jdbcTemplate.update(sql,invite.getRestaurant(),invite.getInvitationId()) == 1;
+        return jdbcTemplate.update(sql,invite.getRestaurantId(),invite.getInvitationId()) == 1;
     }
 
     private Invitation mapRowToInvitation(SqlRowSet rowSet) {
@@ -63,7 +63,7 @@ public class JdbcInvitationDao implements InvitationDao{
         invite.setInvitationId(rowSet.getInt("invitation_id"));
         invite.setHostId(rowSet.getInt("host_id"));
         invite.setCity(rowSet.getString("city"));
-        invite.setRestaurant("restaurant");
+        invite.setRestaurantId(rowSet.getInt("restaurant_id"));
         invite.setMeetingDate(rowSet.getDate("appointment"));
         invite.setDecisionDate(rowSet.getDate("decisionDate"));
 
