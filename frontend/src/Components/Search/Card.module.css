@@ -7,7 +7,18 @@
     flex-direction: column; /* ADD */
     position: relative;
     background-color: rgb(20, 13, 13);
+    border-radius: 9px;
     /* height: 700px; */
+}
+
+.rating {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background-color: white;
+    padding: 5px 7px;
+    border-radius: 2px;
+    font-weight: bold;   
 }
 
 .cardh1 {
@@ -27,7 +38,8 @@
     text-decoration: none;
     color: azure;
     height: 50px;
-    padding-left: 5px;
+    padding-left: 25px;
+
 }
 
 .namecontainer {
@@ -87,4 +99,7 @@
 .cardbutton {
     width: 20rem;
     align-self: center;
+    border-radius: 9px;
+    justify-self: flex-end;
+    font-weight: bold;
 }

@@ -37,7 +37,7 @@ class Main extends Component {
                         <div>
                             <Link to='/home'>Home | </Link>
                             <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/home'/>
+                            <Redirect to='/search'/> {/*changed from /home to /search */}
 
                         </div>  
                     : 
@@ -48,7 +48,7 @@ class Main extends Component {
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/search' component={() => <Search/>}/>
                     <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
-                    <Redirect to='/login'/>
+                    {/* <Redirect to='/login'/> */}
                 </Switch>
             </div>
         )

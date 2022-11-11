@@ -1,19 +1,29 @@
 import React from 'react'
 import styles from './Card.module.css'
+import {useSelector} from 'react-redux'
 const API_BASE = 'http://localhost:8081/'
 
 export default function Card(props) {
-    const [restaurant, setRestaurant] = React.useState({
-      img: props.photo.images.medium.url,
+    const userId = useSelector((state) => state.user.id) //grabbing userId from redux
+    const [phoneButton, setPhoneButton] = React.useState("Call to Order")
+    const [restaurant, setRestaurant] = React.useState({ //using this to POST to our database upon save
+      image: props.photo.images.medium.url,
       name: props.name,
       address: props.address,
-      phone: props.phone
+      phoneNumber: props.phone,
+      userId: userId
     })
 
-    const isOpen = !props.open_now_text ? 'Open Now' : 'Closed'
+    // const isOpen = props.open_now_text ? 'Open Now' : 'Closed'
+    const isOpen = props.open_now_text
     const ranking = props.ranking
     const website = props.web_url
-   // const restaurantType = props.cuisine[0].name
+    const rating = props.rating
+    // const restaurantType = props.cuisine[0].name ? props.cuisine[0].name : null //causing bugs
+
+    function handlePhone() {
+      setPhoneButton(restaurant.phoneNumber)
+    }
 
     function saveRestaurant() {
 
@@ -38,24 +48,27 @@ export default function Card(props) {
     }
 
     function redirect() {
-        window.open(website) 
+        window.open(website) //opening a new tab with the link
     }
 
   return (
     <div className={styles.card}>
-        <img className={styles.cardimg} src={restaurant.img}/>
-        <div className={styles.namecontainer}>
-           <p className={styles.name}>{restaurant.name}</p>
-        </div>
-        {/* {href={website}} adding this below removes console bug, but makes page change */} 
-        <a href className={styles.website} onClick={() => redirect()}>{website}</a>
-        {/* <h1 className={styles.cardh1}>{restaurantType}</h1> bug here*/} 
-        <h1 className={styles.address}>{restaurant.address}</h1>
-        <h1 className={styles.isopen}>{isOpen}</h1>
-        <h1 className={styles.phone}>{restaurant.phone}</h1>
-        <h1 className={styles.ranking}>{ranking}</h1>
-        <br></br>
-        <input className={styles.cardbutton} type='button' onClick={() => saveRestaurant()} value='Save'/>
+      <div className={styles.rating}>{rating} </div>
+      <img className={styles.cardimg} src={restaurant.image}/>
+      <div className={styles.namecontainer}>
+          <p className={styles.name}>{restaurant.name}</p>
+      </div>
+      {/* {href={website}} adding this below removes console bug, but makes main page change onclick */} 
+      <a href className={styles.website} onClick={() => redirect()}>{website}</a>
+      {/* {restaurantType && <h1 className={styles.cardh1}>{restaurantType}</h1> }  */}
+      <h1 className={styles.address}>{restaurant.address}</h1>
+      <h1 className={styles.isopen}>{isOpen}</h1>
+      <h1 className={styles.ranking}>{ranking}</h1>
+
+      <br></br>
+      <input className={styles.cardbutton} type='button' onClick={() => handlePhone()} value={phoneButton}/>
+      <br></br>
+      <input className={styles.cardbutton} type='button' onClick={() => saveRestaurant()} value='Save'/>
     </div>
   )
 }

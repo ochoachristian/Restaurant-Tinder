@@ -1,6 +1,6 @@
-/* body {
+body {
     background-color: rgb(66, 0, 0);
- } */
+ }
 
  .title {
     display: flex;
@@ -61,4 +61,5 @@
     overflow-x: auto;
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 10px;
 }
