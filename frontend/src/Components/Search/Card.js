@@ -14,8 +14,7 @@ export default function Card(props) {
       userId: userId
     })
 
-    // const isOpen = props.open_now_text ? 'Open Now' : 'Closed'
-    const isOpen = props.open_now_text
+    const isOpen = props.open_now_text ? props.open_now_text : 'Closed'
     const ranking = props.ranking
     const website = props.web_url
     const rating = props.rating
@@ -60,11 +59,10 @@ export default function Card(props) {
       </div>
       {/* {href={website}} adding this below removes console bug, but makes main page change onclick */} 
       <a href className={styles.website} onClick={() => redirect()}>{website}</a>
-      {/* {restaurantType && <h1 className={styles.cardh1}>{restaurantType}</h1> }  */}
       <h1 className={styles.address}>{restaurant.address}</h1>
       <h1 className={styles.isopen}>{isOpen}</h1>
       <h1 className={styles.ranking}>{ranking}</h1>
-
+      
       <br></br>
       <input className={styles.cardbutton} type='button' onClick={() => handlePhone()} value={phoneButton}/>
       <br></br>

@@ -41,14 +41,16 @@ class Main extends Component {
 
                         </div>  
                     : 
-                        <Link to='/login'>Home | </Link>
+                        <Link to='/login'>login | </Link>
+
                 }
                 <Switch>
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/search' component={() => <Search/>}/>
-                    <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/>
-                    {/* <Redirect to='/login'/> */}
+                    <Route path='/home' component={() => <Home/>}/>
+                    {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
+                     <Redirect to='/home'/> 
                 </Switch>
             </div>
         )
