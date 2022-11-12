@@ -39,7 +39,6 @@ class Login extends Component {
             await this.props.dispatch(addUser(userWithToken.data.user));
         } catch (error) {
             this.setState(prev => ({...prev, nonvalid:true}))
-            alert("Invalid credentials")
         }
     }
 

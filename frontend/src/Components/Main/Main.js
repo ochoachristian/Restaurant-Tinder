@@ -40,7 +40,7 @@ class Main extends Component {
 
                     <div className={styles.nav}>
 
-                        <img src={image} className={styles.image} />
+                        <img src={image} alt='image' className={styles.image} />
                         <h1 className={styles.title}>Restaurant Tinder</h1>
 
                         <div className={styles.links}>
