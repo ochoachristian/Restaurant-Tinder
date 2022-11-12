@@ -7,7 +7,8 @@ import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Search from '../Search/Search'
-import Navbar from '../Navbar/Navbar'
+import styles from './Main.module.css'
+import image from '../../Images/Logo.jpg'
 
 const mapStateToProps = state => {
     return {
@@ -34,15 +35,31 @@ class Main extends Component {
     render(){
         return(
             <div>
+                
                 {this.props.token.token !== undefined ?
-                        <div>
-                            <Link to='/home'>Home | </Link>
-                            <Link to='/login' onClick={this.handleLogout}>logout</Link> 
-                            <Redirect to='/search'/> {/*changed from /home to /search */}
 
-                        </div>  
+                    <div className={styles.nav}>
+
+                        <img src={image} className={styles.image} />
+                        <h1 className={styles.title}>Restaurant Tinder</h1>
+
+                        <div className={styles.links}>
+                            <Link className={styles.link} to='/home'>Home</Link>
+                            <Link className={styles.link}to='/login' onClick={this.handleLogout}>logout</Link> 
+                            <Redirect to='/search'/> {/*changed from /home to /search */}
+                        </div>
+
+                     </div>  
+
                     : 
-                        <Link to='/login'>login | </Link>
+                    <div className={styles.nav}>
+                        <img src={image} className={styles.image} />
+                        <h1 className={styles.title}>Restaurant Tinder</h1>
+
+                        <div className={styles.links}>
+                            <Link className={styles.link} to='/login'>login</Link>
+                        </div>
+                    </div>
 
                 }
                 <Switch>
