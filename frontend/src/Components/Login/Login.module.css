@@ -1,0 +1,55 @@
+.body{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 200px;
+}
+
+.loginsection{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 550px;
+    height: 450px;
+    background-color: rgba(73, 73, 73, 0.4);
+    border-radius: 9px;
+}
+
+.headtext{
+    color: cornsilk;
+    font-size: 250%;
+}
+
+.textprompt{
+    color: cornsilk;
+}
+
+.userbtn {
+    width: 60%;
+}
+
+.passwordbtn {
+    width: 60%;
+}
+
+.register {
+    text-decoration: none;
+    color: black;
+    background-color:palegoldenrod ;
+    width: 50%;
+    height: 30px;
+    text-align: center;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 9px;
+    border-color: black;
+}
+
+.signinbtn {
+    background-color:palegoldenrod ;
+    width: 50%;
+    text-align: center;
+    border-radius: 9px;
+}

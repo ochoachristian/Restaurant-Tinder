@@ -7,6 +7,7 @@ import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Search from '../Search/Search'
+import Navbar from '../Navbar/Navbar'
 
 const mapStateToProps = state => {
     return {
