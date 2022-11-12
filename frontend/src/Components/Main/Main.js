@@ -45,7 +45,8 @@ class Main extends Component {
 
                         <div className={styles.links}>
                             <Link className={styles.link} to='/home'>Home</Link>
-                            <Link className={styles.link}to='/login' onClick={this.handleLogout}>logout</Link> 
+                            <Link className={styles.link} to='/search'>Search</Link>
+                            <Link className={styles.link}to='/login' onClick={this.handleLogout}>Logout</Link> 
                             <Redirect to='/search'/> {/*changed from /home to /search */}
                         </div>
 
@@ -57,7 +58,8 @@ class Main extends Component {
                         <h1 className={styles.title}>Restaurant Tinder</h1>
 
                         <div className={styles.links}>
-                            <Link className={styles.link} to='/login'>login</Link>
+                            <Link className={styles.link} to='/home'>Home</Link>
+                            <Link className={styles.link} to='/login'>Login</Link>
                         </div>
                     </div>
 
