@@ -2,21 +2,15 @@ import React from 'react'
 import styles from './Search.module.css'
 import Card from './Card'
 const BASE_URL = "https://worldwide-restaurants.p.rapidapi.com/"
-const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f866ejsn3563679d9549"
+const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f866e"
 
 export default function Search() {
     const [city, setCity] = React.useState()
-    const [location, setLocation] = React.useState()
     const [restaurants, setRestaurants] = React.useState()
 
-    // React.useEffect(() => {
-    //     fetchLocationId()
-    // }, [city])
-
-    /**grabs location id from api based on city, city state needs to be defined */
-     function fetchLocationId() {
-
-        if (city) {
+    /**making api call to get location id, then calling fetch restaurants api*/
+     async function fetchLocation() {
+       let location
 
         const encodedParams = new URLSearchParams();
         encodedParams.append("q", city);
@@ -32,19 +26,17 @@ export default function Search() {
             body : encodedParams
             }
 
-        fetch(BASE_URL + 'typeahead', options)
-        .then(response => response.json())
-        .then(response => setLocation(response.results.data[0].result_object.location_id));
-        
-    }
-  }
+        const data = await fetch(BASE_URL + 'typeahead', options)
+        const response = await data.json()
 
-  /**fetches restaurants by location id */
-  async function fetchRestaurants() {
-        fetchLocationId()
-    // sleep(5000).then(() => {})
+        location = response.results.data[0].result_object.location_id
+        return fetchRestaurants(location)
+
+    }
+
+  /**fetches restaurants by location id*/
+  function fetchRestaurants(location) {    
     
-    if (location) {
     const encodedParams = new URLSearchParams();
     encodedParams.append("language", "en_US");
     encodedParams.append("limit", "25"); //grabbing top 25 restaurants
@@ -61,11 +53,9 @@ export default function Search() {
       body: encodedParams
     };
 
-    const response = await fetch(BASE_URL + 'search', options)
-    const data = await response.json()
-    console.log(data)
-    setRestaurants(data.results.data)
-    }
+    fetch(BASE_URL + 'search', options)
+    .then(response => response.json())
+    .then(res => setRestaurants(res.results.data))
   }
 
     /**displays restaurants */
@@ -86,7 +76,7 @@ export default function Search() {
         <br></br>
         <input className={styles.input} type="text" onChange={(event) => setCity(event.target.value)} id="city" name="city" placeholder="Ex: Brooklyn, NY" />
         <br></br>
-        <input className={styles.input} type='button' onClick={() => fetchRestaurants()} value='Fetch Results'/>
+        <input className={styles.input} type='button' onClick={() => fetchLocation()} value='Fetch Results'/>
         <br></br>
         </div>
         {restaurants && <section className={styles.cardlist} >{display()}</section>}
