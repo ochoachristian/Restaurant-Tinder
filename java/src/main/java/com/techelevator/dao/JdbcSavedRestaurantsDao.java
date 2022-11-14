@@ -43,10 +43,11 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
 
     @Override
     public boolean saveRestaurant(SavedRestaurants savedRestaurant) {
-        String sql = "INSERT INTO saved_restaurants (restaurant_id, image, name, address, phone_number, user_id) "
-                + "VALUES (DEFAULT, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO saved_restaurants (restaurant_id, image, name, url, address, phone_number, user_id) "
+                + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
 
-        return jdbcTemplate.update(sql,savedRestaurant.getImage(),savedRestaurant.getName(),savedRestaurant.getAddress(), savedRestaurant.getPhoneNumber(), savedRestaurant.getUserId()) == 1;
+        return jdbcTemplate.update(sql,savedRestaurant.getImage(),savedRestaurant.getName(),savedRestaurant.getUrl(), 
+        savedRestaurant.getAddress(), savedRestaurant.getPhoneNumber(), savedRestaurant.getUserId()) == 1;
     }
 
     @Override
@@ -59,6 +60,8 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
     private SavedRestaurants mapRowToRestaurant(SqlRowSet rowSet) {
         SavedRestaurants savedRestaurant = new SavedRestaurants();
         savedRestaurant.setRestaurantId(rowSet.getInt("restaurant_id"));
+        savedRestaurant.setName(rowSet.getString("name"));
+        savedRestaurant.setUrl(rowSet.getString("url"));
         savedRestaurant.setImage(rowSet.getString("image"));
         savedRestaurant.setAddress(rowSet.getString("address"));
         savedRestaurant.setPhoneNumber(rowSet.getString("phone_number"));

@@ -7,7 +7,8 @@ DROP TABLE IF EXISTS saved_restaurants;
 CREATE TABLE saved_restaurants (
   restaurant_id serial NOT NULL,
   image varchar(255),
-  name varchar(50) NOT NULL,
+  name varchar(100) NOT NULL,
+  url varchar(200) NOT NULL,
   address varchar(100) NOT NULL,
   phone_number varchar(20),
   user_id int NOT NULL,

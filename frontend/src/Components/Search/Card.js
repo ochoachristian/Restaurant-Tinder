@@ -9,6 +9,7 @@ export default function Card(props) {
     const [restaurant, setRestaurant] = React.useState({ //using this to POST to our database upon save
       image: props.photo.images.medium.url,
       name: props.name,
+      url: props.web_url,
       address: props.address,
       phoneNumber: props.phone,
       userId: userId
@@ -25,6 +26,7 @@ export default function Card(props) {
     }
 
     function saveRestaurant() {
+      console.log(restaurant.name)
 
         fetch(API_BASE + 'restaurants/save', {
           method: 'POST',

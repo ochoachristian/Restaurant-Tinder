@@ -1,5 +1,26 @@
 .h1 {
     color: cornsilk;
-    margin-left: 45%;
+    font-style: italic;
+    font-size: 450%;
+    margin-left: 35%;
     margin-top: 20px;
+}
+
+.button {
+    background-color: greenyellow;
+    font-size: large;
+    font-weight: 400;
+    border-radius: 9px;
+    margin-left: 45%;
+    width: 10%;
+}
+.cardlist {
+    display: flex;
+    
+    flex-wrap: nowrap;
+    gap: 50px;
+    overflow-x: auto;
+    padding: 10px;
+    margin-top: 50px;
+    justify-content: space-evenly;
 }

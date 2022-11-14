@@ -5,6 +5,7 @@ public class SavedRestaurants {
     private int restaurantId;
     private String image;
     private String name;
+    private String url;
     private String address;
     private String phoneNumber;
     private int userId;
@@ -12,10 +13,11 @@ public class SavedRestaurants {
     public SavedRestaurants() {
     }
 
-    public SavedRestaurants(int restaurantId, String image, String name, String address, String phoneNumber, int userId) {
+    public SavedRestaurants(int restaurantId, String image, String name, String url, String address, String phoneNumber, int userId) {
         this.restaurantId = restaurantId;
         this.image = image;
         this.name = name;
+        this.url = url;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.userId = userId;
@@ -44,6 +46,15 @@ public class SavedRestaurants {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
 
     public String getAddress() {
         return address;
