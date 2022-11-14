@@ -7,6 +7,7 @@ import {addToken, deleteUser} from '../../Redux/actionCreators'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Search from '../Search/Search'
+import Invite from '../Invite/Invite'
 import styles from './Main.module.css'
 import image from '../../Images/Logo.jpg'
 
@@ -46,6 +47,8 @@ class Main extends Component {
                         <div className={styles.links}>
                             <Link className={styles.link} to='/home'>Home</Link>
                             <Link className={styles.link} to='/search'>Search</Link>
+                            <Link className={styles.link} to='/invite'>Invite</Link>
+
                             <Link className={styles.link}to='/login' onClick={this.handleLogout}>Logout</Link> 
                             <Redirect to='/search'/> {/*changed from /home to /search */}
                         </div>
@@ -68,6 +71,7 @@ class Main extends Component {
                     <Route path='/login' component={() => <Login/>}/>
                     <Route path='/register'component={() => <Register/>}/>
                     <Route path='/search' component={() => <Search/>}/>
+                    <Route path='/invite' component={() => <Invite/>}/>
                     <Route path='/home' component={() => <Home/>}/>
                     {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
                      <Redirect to='/home'/> 

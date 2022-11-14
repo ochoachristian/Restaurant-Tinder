@@ -39,11 +39,13 @@
 .input {
     align-self: center;
     width: 300px;
+    border-radius: 9px;
 }
 
 
 .button {
-    color:lavender
+    color:lavender;
+   
 }
 
 .label {
@@ -58,4 +60,15 @@
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 10px;
+}
+
+.link {
+    text-decoration: none;
+    color:black;
+    font-size: 120%;
+    font-weight: 400;
+    background-color:greenyellow;
+    border-radius: 9px;
+    width: 10%;
+    text-align: center;
 }

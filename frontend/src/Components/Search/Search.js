@@ -1,8 +1,9 @@
 import React from 'react'
 import styles from './Search.module.css'
 import Card from './Card'
+import {Link} from 'react-router-dom'
 const BASE_URL = "https://worldwide-restaurants.p.rapidapi.com/"
-const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f866e"
+const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f86"
 
 export default function Search() {
     const [city, setCity] = React.useState()
@@ -77,6 +78,8 @@ export default function Search() {
         <input className={styles.input} type="text" onChange={(event) => setCity(event.target.value)} id="city" name="city" placeholder="Ex: Brooklyn, NY" />
         <br></br>
         <input className={styles.input} type='button' onClick={() => fetchLocation()} value='Fetch Results'/>
+        <br></br>
+        <Link className={styles.link} to='/invite'>Create Invitation</Link>
         <br></br>
         </div>
         {restaurants && <section className={styles.cardlist} >{display()}</section>}

@@ -1,5 +1,5 @@
 .nav {
-    background-color: rgba(5, 5, 5, 0.94);
+    background-color: rgba(24, 24, 24, 0.94);
     height: 80px;
     display: flex;
     flex-direction: row;
@@ -10,6 +10,7 @@
     display: flex;
     justify-self: flex-end;
     padding-left: 20%;
+    padding-right: 5%;
     gap: 30px;
 }
 
