@@ -1,77 +1,122 @@
-import axios from 'axios'
-import {Component} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import { baseUrl } from '../../Shared/baseUrl'
+import styles from './Register.module.css'
 
-class Register extends Component{
+export default function Register() {
+   
+    const [state, setState] = React.useState({
+        username:'',
+        password:'',
+        confirmPassword:''
+    })
 
-    constructor(props){
-        super(props);
-        this.state = {
-            username: '',
-            password: '',
-            confirmPassword: ''
-        }
+    function checkStrength(string) {
         
+        let a = /[A-Z]/.test(string) //.test returns true if regex is found in string; else false
+        let b =/[a-z]/.test(string) 
+        let c = /\d/.test(string)  
+        let d = string.length >= 8 
+       // console.log(a && b && c && d)
+        return (a && b && c && d)
     }
-
-    handleInputChange = (event) => {
+   
+    function handleInputChange(event) {
         event.preventDefault()
-        this.setState({
-            [event.target.name]: event.target.value
+        setState((prevState) => {
+            return {
+               ...prevState, [event.target.name]: event.target.value
+            }
         })
     }
 
-    handleSubmit = () => {
-        const data = {username: this.state.username, password: this.state.password, confirmPassword: this.state.confirmPassword, role: 'USER'}
-        if(this.state.password === this.state.confirmPassword){
-            axios.post(baseUrl + "/register", data)
-        }else{
-            alert("Password and Confirm Password must match!!!")
+    function handleSubmit() {
+        
+        const data = { //using this to POST
+            username: state.username,
+            password: state.password,
+            confirmPassword: state.confirmPassword,
+            role: 'USER'
+        } 
+        console.log(data)
+
+        if( (state.username.startsWith('@')  || !/@/.test(state.username)) || !/\./.test(state.username)){
+            alert('Needs to be an email')
+            return
+        }
+
+        if(state.password !== state.confirmPassword) {
+
+            alert("Password and Confirm Password must match!")
+            console.log(state)
+
+        } else {
+
+            if (!checkStrength(state.password)) { //if the password does not match the criteria
+                alert('Must have one lowercase letter, one uppercase, one number, and be 8 characters minimum')
+
+            } else { //password meets criteria, POST to database
+
+                fetch(baseUrl + '/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.status === 400) { 
+                        alert('Account already exists.')
+                    } else {
+                        alert("Account created successfully!")
+                        console.log(response.status, JSON.stringify(data))
+                    }
+                })
+            } 
         }
     }
 
-    render(){
-        return(
-            <div>
-                <h1>Create Account</h1>
+    return(
+        <div className={styles.container}>
+
+            <div className={styles.registersection}>
+
+                <h1 className={styles.h1}>Create Account</h1>
+                
+
                 <label class="sr-only">Username</label>
-                <input
+                <input className={styles.input}
                     type="text"
                     id="username"
                     name="username"
-                    class="form-control"
                     placeholder="Username"
                     v-model="user.username"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => handleInputChange(e)}
                     required
                 />
                 <label class="sr-only">Password</label>
-                <input
+                <input className={styles.input}
                     type="password"
                     id="password"
                     name="password"
-                    class="form-control"
                     placeholder="Password"
                     v-model="user.password"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => handleInputChange(e)}
                     required
                 />
-                <input
+                <input className={styles.input}
                     type="password"
                     id="password-confirm"
                     name="confirmPassword"
-                    class="form-control"
                     placeholder="Confirm Password"
                     v-model="user.password"
-                    onChange={this.handleInputChange}
+                    onChange={(e) => handleInputChange(e)}
                     required
                 />
                 <Link to="/login">Have an account?</Link>
-                <button type="submit" onClick={this.handleSubmit}>Sign in</button>
-            </div>
-        )
-    }
-}
+                <button className={styles.button} type="submit" onClick={() => handleSubmit()}>Sign Up</button>
 
-export default Register;
+            </div>
+        </div>
+    )
+}

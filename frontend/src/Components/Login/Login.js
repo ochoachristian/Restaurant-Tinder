@@ -60,25 +60,26 @@ class Login extends Component {
             <div className={styles.body}>
 
                 <div className={styles.loginsection}>
-                    <h1 className={styles.headtext}>Log In</h1>
-                    <div className={styles.textprompt}> {this.state.nonvalid && <p>invalid username/password</p>}
+
+                        <h1 className={styles.headtext}>Log In</h1>
+                        <div className={styles.textprompt}> {this.state.nonvalid && <p>invalid username/password</p>}</div>
+
+                    <div className={styles.userbtn}>
+                        <label class="sr-only">Username</label>
+                        <input type="text" id="username" name="username" className="form-control" placeholder="Username" v-model="user.username" onChange={this.handleInputChange} required/>
+                    </div>
+
+                    <div className={styles.passwordbtn}>
+                        <label class="sr-only">Password</label>
+                        <input type="password" id="password" name="password" className="form-control" placeholder="Password" v-model="user.password" onChange={this.handleInputChange} required/>
+                    </div>
+
+                    <Link className={styles.register} to="/register">Sign Up</Link>
+                    <button className={styles.signinbtn} type="submit" onClick={this.handleLogin}>Sign in</button>
+
                 </div>
-
-                <div className={styles.userbtn}>
-                    <label class="sr-only">Username</label>
-                    <input type="text" id="username" name="username" className="form-control" placeholder="Username" v-model="user.username" onChange={this.handleInputChange} required/>
-                </div>
-
-                <div className={styles.passwordbtn}>
-                    <label class="sr-only">Password</label>
-                    <input type="password" id="password" name="password" className="form-control" placeholder="Password" v-model="user.password" onChange={this.handleInputChange} required/>
-                </div>
-
-                <Link className={styles.register} to="/register">Sign Up</Link>
-                <button className={styles.signinbtn} type="submit" onClick={this.handleLogin}>Sign in</button>
-
+                
             </div>
-    </div>
         )
     }
 }
