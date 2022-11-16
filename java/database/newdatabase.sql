@@ -20,7 +20,7 @@ CREATE TABLE invitation (
   invitation_id serial NOT NULL,
   host_id int NOT NULL,
   city varchar(100) NOT NULL,
-  restaurant_id int NOT NULL,
+  restaurant_id int DEFAULT NULL,
   meeting_date timestamptz NOT NULL,
   decision_date timestamptz NOT NULL,
   CONSTRAINT PK_invitation PRIMARY KEY (invitation_id),

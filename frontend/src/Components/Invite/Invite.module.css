@@ -6,12 +6,31 @@
     margin-top: 20px;
 }
 
+.city {
+    color: cornsilk;
+    padding-left: 10%;
+}
+
+.input {
+    width: 27.5%;
+    text-align: center;
+}
+
+.date {
+    margin-left: 45%;
+}
+
+.text {
+    color: cornsilk;
+    padding-left: 40px;
+}
+
 .button {
     background-color: greenyellow;
     font-size: large;
     font-weight: 400;
     border-radius: 9px;
-    margin-left: 45%;
+    margin-left: 47%;
     width: 10%;
 }
 .cardlist {

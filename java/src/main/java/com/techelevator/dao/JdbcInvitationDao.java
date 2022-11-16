@@ -46,10 +46,10 @@ public class JdbcInvitationDao implements InvitationDao{
 
     @Override
     public boolean createInvitation(Invitation invite) {
-        String sql = "INSERT INTO invitation (host_id, city, restaurant, meeting_date, decision_date) "
-                + "VALUES (?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO invitation (invitation_id, host_id, city, restaurant_id, meeting_date, decision_date) "
+                + "VALUES (DEFAULT, ?, ?, DEFAULT, ?, ?);";
 
-        return jdbcTemplate.update(sql,invite.getHostId(),invite.getCity(),invite.getRestaurantId(),invite.getMeetingDate(),invite.getDecisionDate(),invite.getHostId()) == 1;
+        return jdbcTemplate.update(sql, invite.getHostId(),invite.getCity(),invite.getMeetingDate(),invite.getDecisionDate()) == 1;
     }
 
     @Override
