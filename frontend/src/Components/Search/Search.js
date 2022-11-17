@@ -3,7 +3,7 @@ import styles from './Search.module.css'
 import Card from './Card'
 import {Link} from 'react-router-dom'
 const BASE_URL = "https://worldwide-restaurants.p.rapidapi.com/"
-const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f86"
+const API_KEY = "95802c6db3msh3e00ca1de0e7acbp1f866ejsn3563679d9549"
 
 export default function Search() {
     const [city, setCity] = React.useState()

@@ -16,9 +16,9 @@ public class JdbcVotesDao implements VotesDao {
     public JdbcVotesDao(DataSource dataSource) {this.jdbcTemplate = new JdbcTemplate(dataSource);}
     @Override
     public boolean createVote(Votes vote) {
-        String sql = "INSERT INTO votes (vote_id, restaurant, thumbs_up, thumbs_down, invitation_id) "
-                + "VALUES (?, ?, ?, ?, ?);";
-        return jdbcTemplate.update(sql, vote.getVoteId(),vote.getRestaurantId(),vote.getThumbsUp(), vote.getThumbsDown(), vote.getInvitationId()) == 1;
+        String sql = "INSERT INTO votes (vote_id, restaurant_id, thumbs_up, thumbs_down, invitation_id) "
+                + "VALUES (DEFAULT, ?, DEFAULT, DEFAULT, ?);";
+        return jdbcTemplate.update(sql,vote.getRestaurantId(), vote.getInvitationId()) == 1;
     }
 
     @Override

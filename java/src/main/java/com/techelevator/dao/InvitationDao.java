@@ -12,4 +12,6 @@ public interface InvitationDao {
     public boolean createInvitation(Invitation invite);//restaurant will be null until decision has been made
 
     public boolean updateInvitation(Invitation invite); //once decision made, insert restaurant to table
+
+    public int getInvitationId(int id);
 }

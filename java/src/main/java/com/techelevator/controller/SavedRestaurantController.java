@@ -23,6 +23,9 @@ public class SavedRestaurantController {
     @GetMapping(path="/restaurant/{id}")
     public SavedRestaurants getSavedRestaurant(@PathVariable int id) {return savedRestaurantsDao.getRestaurant(id);}
 
+    @GetMapping(path="/restaurants")
+    public int getSavedRestaurantId(@RequestParam(value="name") String name) {return savedRestaurantsDao.getRestaurantId(name);}
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path="/restaurants/save")
     public boolean saveRestaurant(@RequestBody SavedRestaurants savedRestaurant) {

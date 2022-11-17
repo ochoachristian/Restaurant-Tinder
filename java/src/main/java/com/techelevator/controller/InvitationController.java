@@ -18,14 +18,19 @@ public class InvitationController {
         this.invitationDao = invitationDao;
     }
 
-    @GetMapping(path="/invitations/{id}")
-    public List<Invitation> getAllInvitations(@PathVariable int id) {
-        return invitationDao.getInvitations(id);
-    }
+    // @GetMapping(path="/invitations/{id}")
+    // public List<Invitation> getAllInvitations(@PathVariable int id) {
+    //     return invitationDao.getInvitations(id);
+    // }
 
     @GetMapping(path="/invitation/{id}")
     public Invitation getInvitation(@PathVariable int id) {
         return invitationDao.getInvitation(id);
+    }
+
+    @GetMapping(path="/invitations/{id}")
+    public int getInvitationId(@PathVariable int id) {
+        return invitationDao.getInvitationId(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)

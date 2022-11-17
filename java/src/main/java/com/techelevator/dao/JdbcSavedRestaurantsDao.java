@@ -42,6 +42,18 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
     }
 
     @Override
+    public int getRestaurantId(String name) {
+        SavedRestaurants restaurant = new SavedRestaurants();
+        String sql = "SELECT * FROM saved_restaurants WHERE name = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,name);
+        if(results.next()) {
+            restaurant = mapRowToRestaurant(results);
+        }
+
+        return restaurant.getRestaurantId();
+    }
+
+    @Override
     public boolean saveRestaurant(SavedRestaurants savedRestaurant) {
         String sql = "INSERT INTO saved_restaurants (restaurant_id, image, name, url, address, phone_number, user_id) "
                 + "VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";

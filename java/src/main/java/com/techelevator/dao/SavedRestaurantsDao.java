@@ -10,6 +10,8 @@ public interface SavedRestaurantsDao {
 
     public SavedRestaurants getRestaurant(int id);
 
+    public int getRestaurantId(String name);
+
     public boolean saveRestaurant(SavedRestaurants savedRestaurant);
 
     public boolean removeRestaurant(int id);

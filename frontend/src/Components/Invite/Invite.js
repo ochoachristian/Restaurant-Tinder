@@ -63,8 +63,7 @@ export default function Invite() {
       meetingDate: meetingDate,
       decisionDate: voteDate,
     }
-
-    console.log(body)
+  //  console.log(body)
 
     fetch(API_BASE +  "invitation/create", {
       method: 'POST',
@@ -75,7 +74,10 @@ export default function Invite() {
         body: JSON.stringify(body)
     },  )
     .then(response => response.json())
-    // .then(res => console.log(body))
+     .then(res => console.log(res))
+     .then(res => console)
+     //RETURNING
+    alert("invite created")
  
   }
 

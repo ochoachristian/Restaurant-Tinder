@@ -10,7 +10,7 @@ export default function SavedCard(props) {
       name: props.name,
       url: props.url,
       address: props.address,
-      phoneNumber: props.phone,
+      phoneNumber: props.phoneNumber,
       userId: props.userId,
       restaurantId: props.restaurantId
     })

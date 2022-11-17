@@ -44,6 +44,18 @@ public class JdbcInvitationDao implements InvitationDao{
         return invitation;
     }
 
+    public int getInvitationId(int hostId) {
+        Invitation invitation = new Invitation();
+        String sql = "SELECT * FROM invitation "
+        +"WHERE host_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, hostId);
+        if(results.next()) {
+            invitation = mapRowToInvitation(results);
+        }
+
+        return invitation.getInvitationId();
+    }
+
     @Override
     public boolean createInvitation(Invitation invite) {
         String sql = "INSERT INTO invitation (invitation_id, host_id, city, restaurant_id, meeting_date, decision_date) "
@@ -64,8 +76,8 @@ public class JdbcInvitationDao implements InvitationDao{
         invite.setHostId(rowSet.getInt("host_id"));
         invite.setCity(rowSet.getString("city"));
         invite.setRestaurantId(rowSet.getInt("restaurant_id"));
-        invite.setMeetingDate(rowSet.getDate("appointment"));
-        invite.setDecisionDate(rowSet.getDate("decisionDate"));
+        invite.setMeetingDate(rowSet.getDate("meeting_date"));
+        invite.setDecisionDate(rowSet.getDate("decision_date"));
 
         return invite;
     }
