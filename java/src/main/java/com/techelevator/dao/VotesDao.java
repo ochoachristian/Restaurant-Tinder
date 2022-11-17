@@ -15,4 +15,6 @@ public interface VotesDao {
     public boolean incrementVote(int id);
 
     public boolean decrementVote(int id);
+
+    public int getVoteId(int id);
 }

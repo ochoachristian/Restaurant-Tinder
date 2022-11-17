@@ -15,8 +15,8 @@ public class VotesController {
     private VotesDao votesDao;
     public VotesController(VotesDao votesDao) {this.votesDao = votesDao;}
 
-    @GetMapping(path="/votes/{id}")
-    public List<Votes> getAllVotes(@PathVariable int id) {return votesDao.getVotes(id);}
+    // @GetMapping(path="/votes/{id}")
+    // public List<Votes> getAllVotes(@PathVariable int id) {return votesDao.getVotes(id);}
 
     @GetMapping(path="/vote/{id}")
     public Votes getVote(@PathVariable int id) {return votesDao.getVote(id);}
@@ -30,5 +30,8 @@ public class VotesController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path="/votes/create")
     public boolean createVote(@RequestBody Votes vote) {return votesDao.createVote(vote);}
+
+    @GetMapping(path="/votes/{id}")
+    public int  getVoteId(@PathVariable int id) {return votesDao.getVoteId(id);}
 
 }

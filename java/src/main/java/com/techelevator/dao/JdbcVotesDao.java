@@ -60,6 +60,17 @@ public class JdbcVotesDao implements VotesDao {
         return jdbcTemplate.update(sql,id) == 1;
     }
 
+    @Override
+    public int getVoteId(int id) {
+       Votes vote = new Votes();
+       String sql = "SELECT * FROM votes WHERE restaurant_id = ?;";
+       SqlRowSet results = jdbcTemplate.queryForRowSet(sql, id);
+       if(results.next()){
+        vote = mapRowToVotes(results);
+       }
+        return vote.getVoteId();
+    }
+
 
     private Votes mapRowToVotes(SqlRowSet rowSet) {
         Votes vote = new Votes();
