@@ -50,7 +50,7 @@ class Main extends Component {
                             <Link className={styles.link} to='/invite'>Invite</Link>
 
                             <Link className={styles.link}to='/login' onClick={this.handleLogout}>Logout</Link> 
-                            <Redirect to='/search'/> {/*changed from /home to /search */}
+                            <Redirect to='/invite'/> 
                         </div>
 
                      </div>  

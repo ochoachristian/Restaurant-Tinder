@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import styles from './Invite.module.css'
 import {useSelector} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import SavedCard from '../Invite/SavedCard'
 const API_BASE = 'http://localhost:8081/'
 
@@ -11,6 +12,7 @@ export default function Invite() {
   const [restaurants, setRestaurants] = React.useState()
   const [meetingDate, setMeetingDate] = React.useState()
   const [voteDate, setVoteDate] = React.useState()
+  const [invCreated, setInvCreated] = React.useState(false)
 
   useEffect(() => {
     getRestaurants(userId)
@@ -76,7 +78,7 @@ export default function Invite() {
     .then(response => response.json())
      .then(res => console.log(res))
      .then(res => console)
-     //RETURNING
+     setInvCreated(true)
     alert("invite created")
  
   }
@@ -109,6 +111,7 @@ export default function Invite() {
       <br></br>
 
         <input className={styles.button} type='button' onClick={() => createInvite()} value='Create Invitation'/>
+        {invCreated && <Redirect to='/search'/>}
         {restaurants && <section className={styles.cardlist} >{display()}</section>}
 
     </div>

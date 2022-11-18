@@ -27,13 +27,13 @@ export default function Card(props) {
 
     async function getRestaurantId() {
       const restaurantId = await axios.get(API_BASE + "restaurants/", {params : {name:restaurant.name}});
-    //console.log(restaurantId.data)
+    console.log(restaurantId.data)
       return restaurantId.data
     }
 
     async function getInvitationId() {
       const invitationId = await axios.get(API_BASE + "invitations/" + userId);
-    //console.log(invitationId.data)
+      console.log(invitationId.data)
       return invitationId.data
     }
 
@@ -50,7 +50,6 @@ export default function Card(props) {
     
     /**saves restaurant to saved_restaurants and votes tables */
     async function saveRestaurant() {
-      saveToVotes()
       
         fetch(API_BASE + 'restaurants/save', {
           method: 'POST',
@@ -65,6 +64,7 @@ export default function Card(props) {
             alert("Restaurant Saved!")
           } 
         })
+        .then(() => saveToVotes())
         .catch(err => {
           console.error(err)
           alert("Could not save")
