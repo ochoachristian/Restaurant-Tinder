@@ -10,6 +10,8 @@ public interface GuestsDao {
 
     public Guests getGuest(int id);
 
+    public int getGuestId(String name);
+
     public boolean createGuest(Guests guest);
 
     public boolean removeGuest(int id);

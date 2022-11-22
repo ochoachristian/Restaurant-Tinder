@@ -15,8 +15,8 @@ public class VotesController {
     private VotesDao votesDao;
     public VotesController(VotesDao votesDao) {this.votesDao = votesDao;}
 
-    // @GetMapping(path="/votes/{id}")
-    // public List<Votes> getAllVotes(@PathVariable int id) {return votesDao.getVotes(id);}
+    @GetMapping(path="/votes/invitation/{id}")
+    public List<Votes> getAllVotes(@PathVariable int id) {return votesDao.getVotes(id);}
 
     @GetMapping(path="/vote/{id}")
     public Votes getVote(@PathVariable int id) {return votesDao.getVote(id);}

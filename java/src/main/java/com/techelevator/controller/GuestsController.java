@@ -21,6 +21,9 @@ public class GuestsController {
     @GetMapping(path="/guest/{id}")
     public Guests getGuest(@PathVariable int id) {return guestsDao.getGuest(id);}
 
+    @GetMapping(path="/guest")
+    public int getGuestid(@RequestParam(value="name") String name) {return guestsDao.getGuestId(name);}
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(path="/guests/create")
     public boolean createGuest(@RequestBody Guests guest) {return guestsDao.createGuest(guest);}

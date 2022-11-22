@@ -43,9 +43,7 @@ CREATE TABLE guests (
   guest_id serial NOT NULL,
   name varchar(50) NOT NULL,
   email varchar(100),
-  vote_id int NOT NULL,
   invitation_id int NOT NULL,
   CONSTRAINT PK_guests PRIMARY KEY (guest_id),
-  CONSTRAINT FK_guests_vote_id FOREIGN KEY (vote_id) REFERENCES votes(vote_id),
   CONSTRAINT FK_guests_invitation_id FOREIGN KEY (invitation_id) REFERENCES invitation (invitation_id)
 );

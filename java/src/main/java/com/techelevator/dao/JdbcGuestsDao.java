@@ -41,10 +41,10 @@ public class JdbcGuestsDao implements GuestsDao{
 
     @Override
     public boolean createGuest(Guests guest) {
-        String sql = "INSERT INTO guests (name, email, vote_id, invitation_id) "
-                + "VALUES (?, ?, ?, ?);";
+        String sql = "INSERT INTO guests (guest_id, name, email, invitation_id) "
+                + "VALUES (DEFAULT, ?, ?, ?);";
 
-        return jdbcTemplate.update(sql,guest.getName(), guest.getEmail(), guest.getVoteId(), guest.getInvitationId()) == 1;
+        return jdbcTemplate.update(sql,guest.getName(), guest.getEmail(), guest.getInvitationId()) == 1;
     }
 
     @Override
@@ -62,5 +62,17 @@ public class JdbcGuestsDao implements GuestsDao{
         guest.setInvitationId(rowSet.getInt("invitation_id"));
 
         return guest;
+    }
+    @Override
+    public int getGuestId(String name) {
+        Guests guest = new Guests();
+        String sql = "SELECT * FROM guests "
+        +"WHERE name = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, name);
+        if(results.next()) {
+            guest = mapRowToGuest(results);
+        }
+
+        return guest.getGuestId();
     }
 }

@@ -2,27 +2,14 @@
     color: cornsilk;
     font-style: italic;
     font-size: 450%;
-    margin-left: 5%;
+    margin-left: 40%;
     margin-top: 20px;
 }
 
-.city {
-    color: cornsilk;
-    padding-left: 0%;
-}
-
 .input {
-    width: 14.5%;
+    margin-left: 40%;
+    width: 20%;
     text-align: center;
-}
-
-.date {
-    margin-left: 45%;
-}
-
-.text {
-    color: cornsilk;
-    padding-left: 40px;
 }
 
 .button {
@@ -30,9 +17,10 @@
     font-size: large;
     font-weight: 400;
     border-radius: 9px;
-    margin-left: 0%;
+    margin-left: 45%;
     width: 10%;
 }
+
 .cardlist {
     display: flex;
     
@@ -42,10 +30,4 @@
     padding: 10px;
     margin-top: 50px;
     justify-content: space-evenly;
-}
-
-.test {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
