@@ -68,6 +68,20 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
         return jdbcTemplate.update(sql,id) == 1;
     }
 
+    @Override
+    public List<SavedRestaurants> getRestaurants(int id) {
+        List<SavedRestaurants> restaurants = new ArrayList<>();
+        String sql = "SELECT s.restaurant_id, s.image, s.name, s.url, s.address, s.phone_number, s.user_id "
+        + "FROM saved_restaurants AS s JOIN invitation ON s.user_id = invitation.host_id "
+        + "JOIN guests USING (invitation_id) WHERE guest_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,id);
+        while (results.next()) {
+            SavedRestaurants restaurant = mapRowToRestaurant(results);
+            restaurants.add(restaurant);
+        }
+
+        return restaurants;
+    }
 
     private SavedRestaurants mapRowToRestaurant(SqlRowSet rowSet) {
         SavedRestaurants savedRestaurant = new SavedRestaurants();

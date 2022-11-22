@@ -17,6 +17,9 @@ public class SavedRestaurantController {
 
     public SavedRestaurantController(SavedRestaurantsDao savedRestaurantsDao) {this.savedRestaurantsDao = savedRestaurantsDao;}
 
+    @GetMapping(path="/restaurants/invitation/guest/{id}")
+    public List<SavedRestaurants> getRestaurants(@PathVariable int id) {return savedRestaurantsDao.getRestaurants(id);}
+
     @GetMapping(path="/restaurants/{id}")
     public List<SavedRestaurants> getAllRestaurants(@PathVariable int id) {return savedRestaurantsDao.getAllRestaurants(id);}
 

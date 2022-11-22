@@ -15,4 +15,5 @@ public interface GuestsDao {
     public boolean createGuest(Guests guest);
 
     public boolean removeGuest(int id);
+
 }

@@ -16,4 +16,6 @@ public interface SavedRestaurantsDao {
 
     public boolean removeRestaurant(int id);
 
+    public List<SavedRestaurants> getRestaurants(int id);//get invitation restaurants based on guest id
+
 }

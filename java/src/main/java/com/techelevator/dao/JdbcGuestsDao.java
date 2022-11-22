@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.Guests;
+import com.techelevator.model.SavedRestaurants;
+
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
@@ -75,4 +77,5 @@ public class JdbcGuestsDao implements GuestsDao{
 
         return guest.getGuestId();
     }
+    
 }
