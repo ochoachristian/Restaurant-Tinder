@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './Vote.module.css'
 import SavedCard from '../Invite/SavedCard'
+import axios from 'axios'
 const API_BASE = 'http://localhost:8081/'
 
 export default function Vote() {
@@ -9,14 +10,14 @@ export default function Vote() {
     const guestId = pathName.substring(7)
     const [restaurants, setRestaurants] = React.useState()
 
-    function testId() {
-        console.log(pathName)
-        console.log(guestId)
-    }
-
     React.useEffect(() => {
         getRestaurants(guestId)
         }, [])
+
+    async function getInvitationId() {
+        const invitationId = await (await axios.get(API_BASE + "guest/" + guestId)).data.invitationId
+        return invitationId
+    }
 
     /** get the host saved list */
     function getRestaurants(id) {
@@ -30,6 +31,17 @@ export default function Vote() {
         }, )
         .then(response => response.json())
         .then(res => setRestaurants(res))
+    }
+
+    async function getDecisionDate() {
+        
+        const invitationId = await getInvitationId()
+        //return console.log(invitationId)
+        
+         const res = await axios.get(API_BASE + "invitation/" + invitationId)//grabs invite details
+         const decisionDate = res.data.decisionDate
+         console.log(decisionDate)
+         return decisionDate 
     }
 
      /**displays restaurants */
@@ -46,7 +58,7 @@ export default function Vote() {
 
   return (
     <div>
-        <h1 className={styles.h1} onClick={() => testId()}>Vote Down Below!</h1>
+        <h1 className={styles.h1} onClick={() => getDecisionDate()}>Vote Down Below!</h1>
         {restaurants && <section className={styles.cardlist}>{display()}</section>}
         
     </div>
