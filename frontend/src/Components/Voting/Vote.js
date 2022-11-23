@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './Vote.module.css'
 import SavedCard from '../Invite/SavedCard'
 import axios from 'axios'
+import VotingCard from './VotingCard'
 const API_BASE = 'http://localhost:8081/'
 
 export default function Vote() {
@@ -50,7 +51,7 @@ export default function Vote() {
         const savedCard = restaurants.map(item => {
             // console.log(item)
             return (
-                <SavedCard key={item.restaurant_id} {...item}/>
+                <VotingCard key={item.restaurant_id} {...item}/>
             )
         })
         return savedCard
