@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import Search from '../Search/Search'
 import Invite from '../Invite/Invite'
+import Vote from '../Voting/Vote'
 import styles from './Main.module.css'
 import image from '../../Images/Logo.jpg'
 
@@ -73,7 +74,7 @@ class Main extends Component {
                     <Route path='/search' component={() => <Search/>}/>
                     <Route path='/invite' component={() => <Invite/>}/>
                     <Route path='/home' component={() => <Home/>}/>
-                    <Route path='/guest/:id' component={() => <Search/>}/>
+                    <Route path='/guest/:id' component={() => <Vote/>}/>
                     {/* <Route path='/home' component={this.props.token.token !== undefined ? () => <Home/> : null}/> */}
                      <Redirect to='/home'/> 
                 </Switch>

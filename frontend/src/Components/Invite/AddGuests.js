@@ -1,13 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
-import { useParams } from 'react-router'
 import SavedCard from '../Invite/SavedCard'
 import styles from './AddGuests.module.css'
 const API_BASE = 'http://localhost:8081/'
 
 export default function AddGuests() {
-    const {id} = useParams()
+
     const [restaurants, setRestaurants] = React.useState()
     const userId = useSelector((state) => state.user.id)
     const [guest, setGuest] = React.useState({
