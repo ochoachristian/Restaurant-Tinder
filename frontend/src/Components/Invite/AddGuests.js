@@ -1,11 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import {useSelector} from 'react-redux'
+import { useParams } from 'react-router'
 import SavedCard from '../Invite/SavedCard'
 import styles from './AddGuests.module.css'
 const API_BASE = 'http://localhost:8081/'
 
 export default function AddGuests() {
+    const {id} = useParams()
     const [restaurants, setRestaurants] = React.useState()
     const userId = useSelector((state) => state.user.id)
     const [guest, setGuest] = React.useState({
@@ -46,8 +48,14 @@ export default function AddGuests() {
 
     async function getInvitationId() {
         const invitationId = await axios.get(API_BASE + "invitations/" + userId);
-        console.log(invitationId.data)
+      //console.log(invitationId.data)
         return await invitationId.data 
+     }
+
+     async function getGuestUrl(name) {
+    
+        return await axios.get(API_BASE + "guest", {params : {name : name}})
+        .then((res) => "http://localhost:3000/guest/" + res.data)
      }
 
     async function AddGuests() {
@@ -59,14 +67,13 @@ export default function AddGuests() {
             invitationId: id
            }
         }) 
-       // return console.log(guest)
-       if (guest.name !== "") {
-        const create = await axios.post(API_BASE + "guests/create", guest) //error
-        console.log(guest)
 
-        const response = create.status
-        console.log(response)
-        return alert("Guest added") 
+       if (guest.name !== "") {
+
+        const create = await axios.post(API_BASE + "guests/create", guest)
+        const url = await getGuestUrl(guest.name)
+        return alert("Guest added! Invite your guest using this url: " + url)
+       // return console.log(url)
 
        } else {
         alert("Name cannot be empty")
