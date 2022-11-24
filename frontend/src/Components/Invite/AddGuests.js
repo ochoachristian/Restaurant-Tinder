@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
+import moment from 'moment'
 import {useSelector} from 'react-redux'
 import SavedCard from '../Invite/SavedCard'
+import Finalists from '../Finalists/Finalists'
 import styles from './AddGuests.module.css'
 const API_BASE = 'http://localhost:8081/'
 
@@ -14,6 +16,30 @@ export default function AddGuests() {
         email: "",
         invitationId: ""
     })
+    const currentTime = moment()._d
+    const [datePassed, setDatePassed] = React.useState()
+
+    React.useEffect(() => {
+        checkDate()
+        }, [!datePassed])
+
+    async function checkDate() {
+        const date = await getDecisionDate()
+        console.log("decision date = " + date + " now = " + currentTime)
+        console.log(!moment(currentTime).isBefore(date))
+        const isBefore = moment(currentTime).isBefore(date) //if date passed it will return false
+        setDatePassed(!isBefore) //set state to true if date passed. boolean will hold false.
+    }
+
+    async function getDecisionDate() {
+        
+        const invitationId = await getInvitationId()
+        //return console.log(invitationId)
+         const res = await axios.get(API_BASE + "invitation/" + invitationId)//grabs invite details
+         const decisionDate = res.data.decisionDate
+      //   console.log(decisionDate)
+         return decisionDate 
+    }
 
     React.useEffect(() => {
         getRestaurants(userId)
@@ -90,15 +116,29 @@ export default function AddGuests() {
 
   return (
     <div>
-        <h1 className={styles.h1}>My Invitation</h1>
-        <label class="sr-only">name</label>
-        <input className={styles.input} type="text" onChange={(event) => handleInputChange(event)} id="name" name="name" placeholder="name" />
-        <br></br>
-        <label class="sr-only">email</label>
-        <input className={styles.input} type="text" onChange={(event) => handleInputChange(event)} name="email" placeholder="email"/>
-        <br></br>
-        <input className={styles.button} type='button' onClick={() => AddGuests()} value='Add Guest'/>
-        {restaurants && <section className={styles.cardlist}>{display()}</section>}
+
+    { datePassed == false ?
+
+        <div>
+
+            <h1 className={styles.h1}>My Invitation</h1>
+            <label class="sr-only">name</label>
+            <input className={styles.input} type="text" onChange={(event) => handleInputChange(event)} id="name" name="name" placeholder="name" />
+            <br></br>
+            <label class="sr-only">email</label>
+            <input className={styles.input} type="text" onChange={(event) => handleInputChange(event)} name="email" placeholder="email"/>
+            <br></br>
+            <input className={styles.button} type='button' onClick={() => AddGuests()} value='Add Guest'/>
+            {restaurants && <section className={styles.cardlist}>{display()}</section>}
+
+        </div>
+        :
+
+        <Finalists />
+
+    }
+
+
     </div>
   )
 }

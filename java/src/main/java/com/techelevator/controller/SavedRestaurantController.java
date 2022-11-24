@@ -17,13 +17,16 @@ public class SavedRestaurantController {
 
     public SavedRestaurantController(SavedRestaurantsDao savedRestaurantsDao) {this.savedRestaurantsDao = savedRestaurantsDao;}
 
-    @GetMapping(path="/restaurants/invitation/guest/{id}")
+    @GetMapping(path="/restaurants/invitation/guest/{id}") //id = guest id
     public List<SavedRestaurants> getRestaurants(@PathVariable int id) {return savedRestaurantsDao.getRestaurants(id);}
 
-    @GetMapping(path="/restaurants/{id}")
+    @GetMapping(path="/restaurants/finalists/{id}") //id = invitation id
+    public List<SavedRestaurants> getFinalists(@PathVariable int id) {return savedRestaurantsDao.getFinalists(id);}
+
+    @GetMapping(path="/restaurants/{id}") //id = host id
     public List<SavedRestaurants> getAllRestaurants(@PathVariable int id) {return savedRestaurantsDao.getAllRestaurants(id);}
 
-    @GetMapping(path="/restaurant/{id}")
+    @GetMapping(path="/restaurant/{id}") //id = restaurant id
     public SavedRestaurants getSavedRestaurant(@PathVariable int id) {return savedRestaurantsDao.getRestaurant(id);}
 
     @GetMapping(path="/restaurants")

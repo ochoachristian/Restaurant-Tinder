@@ -83,6 +83,24 @@ public class JdbcSavedRestaurantsDao implements SavedRestaurantsDao {
         return restaurants;
     }
 
+    @Override
+    public List<SavedRestaurants> getFinalists(int id) {
+        List<SavedRestaurants> restaurants = new ArrayList<>();
+        String sql = "SELECT * FROM saved_restaurants "
+        +"JOIN votes USING (restaurant_id) "
+        +"WHERE votes.thumbs_down = 0 "
+        +"AND invitation_id = ? "
+        +"ORDER BY thumbs_up DESC "
+        +"LIMIT 3;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql,id);
+        while (results.next()) {
+            SavedRestaurants restaurant = mapRowToRestaurant(results);
+            restaurants.add(restaurant);
+        }
+
+        return restaurants;
+    }
+
     private SavedRestaurants mapRowToRestaurant(SqlRowSet rowSet) {
         SavedRestaurants savedRestaurant = new SavedRestaurants();
         savedRestaurant.setRestaurantId(rowSet.getInt("restaurant_id"));

@@ -18,4 +18,6 @@ public interface SavedRestaurantsDao {
 
     public List<SavedRestaurants> getRestaurants(int id);//get invitation restaurants based on guest id
 
+    public List<SavedRestaurants> getFinalists(int id);//get finalist restaurants by invitation
+
 }
