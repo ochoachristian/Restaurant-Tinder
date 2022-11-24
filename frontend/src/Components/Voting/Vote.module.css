@@ -14,3 +14,11 @@
     margin-top: 50px;
     justify-content: space-evenly;
 }
+
+.h2 {
+    color: cornsilk;
+    font-size: 650%;
+    font-style: italic;
+    margin-left: 25%;
+    margin-top: 10%;
+}
