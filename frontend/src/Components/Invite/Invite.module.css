@@ -35,7 +35,6 @@
 }
 .cardlist {
     display: flex;
-    
     flex-wrap: nowrap;
     gap: 50px;
     overflow-x: auto;
