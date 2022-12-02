@@ -11,6 +11,7 @@ export default function AddGuests() {
 
     const [restaurants, setRestaurants] = React.useState()
     const userId = useSelector((state) => state.user.id)
+    const token = useSelector((state) => state.token.token);
     const [guest, setGuest] = React.useState({
         name: "",
         email: "",

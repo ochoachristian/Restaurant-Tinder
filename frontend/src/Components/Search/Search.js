@@ -13,50 +13,61 @@ export default function Search() {
      async function fetchLocation() {
        let location
 
-        const encodedParams = new URLSearchParams();
-        encodedParams.append("q", city);
-        encodedParams.append("language", "en_US");
+       try {
 
-        const options = {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-            'X-RapidAPI-Key': API_KEY,
-            'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
-            },
-            body : encodedParams
-            }
+       
+          const encodedParams = new URLSearchParams();
+          encodedParams.append("q", city);
+          encodedParams.append("language", "en_US");
 
-        const data = await fetch(BASE_URL + 'typeahead', options)
-        const response = await data.json()
+          const options = {
+          method: 'POST',
+          headers: {
+              'content-type': 'application/x-www-form-urlencoded',
+              'X-RapidAPI-Key': API_KEY,
+              'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
+              },
+              body : encodedParams
+              }
 
-        location = response.results.data[0].result_object.location_id
-        return fetchRestaurants(location)
+          const data = await fetch(BASE_URL + 'typeahead', options)
+          const response = await data.json()
+
+          location = response.results.data[0].result_object.location_id
+          return fetchRestaurants(location)
+        } catch (e) {
+
+          alert("Could not find city")
+        }
 
     }
 
   /**fetches restaurants by location id*/
   function fetchRestaurants(location) {    
     
-    const encodedParams = new URLSearchParams();
-    encodedParams.append("language", "en_US");
-    encodedParams.append("limit", "25"); //grabbing top 25 restaurants
-    encodedParams.append("location_id", location);
-    encodedParams.append("currency", "USD");
+   try {
+        const encodedParams = new URLSearchParams();
+        encodedParams.append("language", "en_US");
+        encodedParams.append("limit", "50"); //grabbing top 50 restaurants
+        encodedParams.append("location_id", location);
+        encodedParams.append("currency", "USD");
 
-    const options = {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/x-www-form-urlencoded',
-        'X-RapidAPI-Key': API_KEY,
-        'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
-      },
-      body: encodedParams
-    };
+        const options = {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/x-www-form-urlencoded',
+            'X-RapidAPI-Key': API_KEY,
+            'X-RapidAPI-Host': 'worldwide-restaurants.p.rapidapi.com'
+          },
+          body: encodedParams
+        };
 
-    fetch(BASE_URL + 'search', options)
-    .then(response => response.json())
-    .then(res => setRestaurants(res.results.data))
+        fetch(BASE_URL + 'search', options)
+        .then(response => response.json())
+        .then(res => setRestaurants(res.results.data))
+      } catch(e) {
+        alert("Could not find city")
+      }
   }
 
     /**displays restaurants */
@@ -77,9 +88,9 @@ export default function Search() {
         <br></br>
         <input className={styles.input} type="text" onChange={(event) => setCity(event.target.value)} id="city" name="city" placeholder="Ex: Brooklyn, NY" />
         <br></br>
-        <input className={styles.input} type='button' onClick={() => fetchLocation()} value='Fetch Results'/>
+        <Link className={styles.link} to='/invite'>Take me to my Invitation</Link>
         <br></br>
-        <Link className={styles.link} to='/invite'>Create Invitation</Link>
+        <input className={styles.search} type='button' onClick={() => fetchLocation()} value='Search'/>
         <br></br>
         </div>
         {restaurants && <section className={styles.cardlist} >{display()}</section>}

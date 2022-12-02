@@ -66,7 +66,7 @@ public class JdbcInvitationDao implements InvitationDao{
 
     @Override
     public boolean updateInvitation(Invitation invite) {
-        String sql = "UPDATE invitation SET restaurant = ? WHERE invitation_id = ?;";
+        String sql = "UPDATE invitation SET restaurant_id = ? WHERE invitation_id = ?;";
         return jdbcTemplate.update(sql,invite.getRestaurantId(),invite.getInvitationId()) == 1;
     }
 

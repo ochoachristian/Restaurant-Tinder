@@ -67,8 +67,15 @@
     color:black;
     font-size: 120%;
     font-weight: 400;
-    background-color:greenyellow;
+    background-color:lavender;
     border-radius: 9px;
-    width: 10%;
+    width: 13%;
     text-align: center;
+}
+
+.search {
+    align-self: center;
+    width: 200px;
+    border-radius: 9px;
+    background-color:greenyellow;
 }

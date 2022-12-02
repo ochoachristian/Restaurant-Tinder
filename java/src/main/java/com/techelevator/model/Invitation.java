@@ -50,7 +50,7 @@ public class Invitation {
         return restaurantId;
     }
 
-    public void setRestaurantId(int restaurant) {
+    public void setRestaurantId(int restaurantId) {
         this.restaurantId = restaurantId;
     }
 

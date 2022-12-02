@@ -9,6 +9,7 @@ const API_BASE = 'http://localhost:8081/'
 export default function Invite() {
 
   const userId = useSelector((state) => state.user.id)
+  const token = useSelector((state) => state.token.token);
   const [city, setCity] = React.useState()
   const [restaurants, setRestaurants] = React.useState()
   const [meetingDate, setMeetingDate] = React.useState()

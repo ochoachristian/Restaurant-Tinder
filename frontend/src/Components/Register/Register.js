@@ -89,7 +89,7 @@ export default function Register() {
                     type="text"
                     id="username"
                     name="username"
-                    placeholder="Username"
+                    placeholder="Email"
                     v-model="user.username"
                     onChange={(e) => handleInputChange(e)}
                     required
